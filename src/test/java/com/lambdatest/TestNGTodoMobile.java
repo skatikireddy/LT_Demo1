@@ -20,24 +20,30 @@ public class TestNGTodoMobile {
 
     @BeforeMethod
     public void setup(Method m, ITestContext ctx) throws MalformedURLException {
-        String username = System.getenv("LT_USERNAME") == null ? "Your LT Username" : System.getenv("LT_USERNAME");
-        String authkey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" : System.getenv("LT_ACCESS_KEY");
-        ;
+               
+        String username = "srinivas.kishafoundation";
+        String authkey = "MCtpqmcJj7B6NJfj38NAtD5eYW6UUgwXgF77zqNAMhY1mkbEEI";
         String hub = "@mobile-hub.lambdatest.com/wd/hub";
 
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("platformName", "android");
-        caps.setCapability("deviceName", "Pixel 4a");
-        caps.setCapability("platformVersion", "11");
-        caps.setCapability("isRealMobile", true);
-        caps.setCapability("build", "TestNG With Java");
-        caps.setCapability("name", m.getName() + this.getClass().getName());
-        caps.setCapability("plugin", "git-testng");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "android");
+        capabilities.setCapability("deviceName", "Galaxy A13");
+        capabilities.setCapability("platformVersion", "12");
+        capabilities.setCapability("isRealMobile", true);
+        
+//        DesiredCapabilities caps = new DesiredCapabilities();
+//        caps.setCapability("platformName", "android");
+//        caps.setCapability("deviceName", "Pixel 4a");
+//        caps.setCapability("platformVersion", "11");
+//        caps.setCapability("isRealMobile", true);
+        capabilities.setCapability("build", "TestNG With Java");
+        capabilities.setCapability("name", m.getName() + this.getClass().getName());
+        capabilities.setCapability("plugin", "git-testng");
 
         String[] Tags = new String[] { "Feature", "Tag", "Moderate" };
-        caps.setCapability("tags", Tags);
+        capabilities.setCapability("tags", Tags);
 
-        driver = new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+        driver = new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), capabilities);
     }
 
     @Test
